@@ -1,0 +1,5 @@
+#Project developed following Rodrigo Manguinho's course - API in NodeJS with clean architecture and TDD
+
+- Packages
+standard -> npm i standard -D
+Plugin -> StandardJS - JavaScript Standard Style
