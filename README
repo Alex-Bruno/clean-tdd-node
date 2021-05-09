@@ -8,4 +8,5 @@ Plugin -> StandardJS - JavaScript Standard Style
 # Lint-staged -> npm i lint-staged -D
 
 # Husky -> npm i husky@next -D
-
+npx husky install
+ npx husky add .husky/pre-commit "npx lint-staged"

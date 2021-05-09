@@ -6,13 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "lint-staged" : {
-    "*.js": ["standard"]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "lint-staged": {
+    "*.js": [
+      "standard"
+    ]
   },
   "repository": {
     "type": "git",
@@ -31,6 +28,7 @@
   },
   "homepage": "https://github.com/Alex-Bruno/clean-tdd-node#readme",
   "devDependencies": {
+    "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "standard": "^16.0.3"
   }
