@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-git diff HEAD
+echo husky runing pre-push
+
+git diff HEAD --quiet
