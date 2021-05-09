@@ -10,3 +10,6 @@ Plugin -> StandardJS - JavaScript Standard Style
 # Husky -> npm i husky@next -D
 npx husky install
 npx husky add .husky/pre-commit "npx lint-staged"
+
+# Jest -> npm i jest -D 
+jest --init
