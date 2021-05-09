@@ -2,8 +2,10 @@
 
 - Packages
 
-# standard -> npm i standard -D
+# Standard -> npm i standard -D
 Plugin -> StandardJS - JavaScript Standard Style
 
-# lint-staged -> npm i lint-staged -D
+# Lint-staged -> npm i lint-staged -D
+
+# Husky -> npm i husky@next -D
 
