@@ -1,0 +1,25 @@
+{
+  "name": "clean-tdd-node",
+  "version": "1.0.0",
+  "description": "clean architecture and TDD course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Bruno/clean-tdd-node.git"
+  },
+  "keywords": [
+    "TDD",
+    "Clean",
+    "architecture",
+    "node"
+  ],
+  "author": "Alex Bruno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-Bruno/clean-tdd-node/issues"
+  },
+  "homepage": "https://github.com/Alex-Bruno/clean-tdd-node#readme"
+}
