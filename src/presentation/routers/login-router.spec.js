@@ -26,6 +26,15 @@ const makeEmailValidator = () => {
   return emailValidatorSpy
 }
 
+const makeEmailValidatorWithError = () => {
+  class EmailValidatorSpy {
+    isValid (email) {
+      throw new Error()
+    }
+  }
+  return new EmailValidatorSpy()
+}
+
 const makeAuthUseCase = () => {
   class AuthUseCaseSpy {
     async auth (email, password) {
@@ -95,8 +104,7 @@ describe('Login Router', () => {
 
   test('Should return 500 if httpRequest has not body', async () => {
     const { sut } = makeSut()
-    const httpRequest = {}
-    const httpResponse = await sut.route(httpRequest)
+    const httpResponse = await sut.route({})
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
   })
@@ -155,9 +163,7 @@ describe('Login Router', () => {
   })
 
   test('Should return 500 if no AuthUseCase is no auth method', async () => {
-    class AuthUseCaseSpy { }
-    const authUseCaseSpy = new AuthUseCaseSpy()
-    const sut = new LoginRouter(authUseCaseSpy)
+    const sut = new LoginRouter({})
     const httpRequest = {
       body: {
         email: 'any_email@steller.com',
@@ -181,5 +187,37 @@ describe('Login Router', () => {
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 500 if no EmailValidator is provided', async () => {
+    const authUseCaseSpy = makeAuthUseCase()
+    const sut = new LoginRouter(authUseCaseSpy)
+    const httpRequest = {}
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 500 if EmailValidator has no isValid method', async () => {
+    const authUseCaseSpy = makeAuthUseCase()
+    const sut = new LoginRouter(authUseCaseSpy, {})
+    const httpRequest = {}
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
+
+  test('Should return 500 if EmailValidator throws', async () => {
+    const authUseCaseSpy = makeAuthUseCase()
+    const emailValidatorSpy = makeEmailValidatorWithError()
+    const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
+    const httpRequest = {
+      body: {
+        email: 'any_email@steller.com',
+        password: 'any_password'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
   })
 })
