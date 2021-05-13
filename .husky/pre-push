@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx test:ci
+echo husky runing pre-push
+
+npm run test:ci
