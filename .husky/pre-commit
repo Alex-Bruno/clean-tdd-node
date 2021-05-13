@@ -5,4 +5,4 @@ echo husky runing pre-commit
 
 npx lint-staged
 
-git diff
+git status
